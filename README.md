@@ -4,26 +4,18 @@ twitter scraper allows to download user's every photo
 # basic usage
 
 ```python
-from twitter import twitter
+from twitter.user import User
+from twitter.downloader import Downloader
 
-twitter.TOKEN = '' # put your twitter bearer token here
+user = User('elonmusk')  # create user
 
-username = 'elonmusk'
+user.getID() # get user id for endpoint calls
 
-scrapper = twitter.Scrapper() # create scrapper
+user.collectPhotos() # get all user photos
 
-user = scrapper.createUser(username) # create user
-
-user.getPhotos(limit=5) # get user photos from newest with limit of 5 tweets
-
-scrapper.downloadPhotos(user) # download photos into user directory
+Downloader().download(user)  # download photos into user directory
 ```
 
-# disclaimer
-it's not working in 100% for users who has got more than 100 media tweets (TODO 1.)
-
-# TODO
-- instead of using tokens for scraping tweets - use since_id (https://developer.twitter.com/en/docs/twitter-api/pagination)
-- create better tweets limit
-- add venv for user token
-- better messages logging
+# environment variables
+set you environment variable "TWITTER_TOKEN" to your token for it to work
+or go into [config file](twitter/config.py) and paste token there
