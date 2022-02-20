@@ -1,13 +1,10 @@
-from twitter import twitter
+from twitter.user import User
+from twitter.downloader import Downloader
 
-twitter.TOKEN = ''
+user = User('elonmusk')
 
-username = 'elonmusk'
+user.getID()
 
-scrapper = twitter.Scrapper()
+user.collectPhotos()
 
-user = scrapper.createUser(username)
-
-user.getPhotos(limit=5)
-
-scrapper.downloadPhotos(user)
+Downloader().download(user)
